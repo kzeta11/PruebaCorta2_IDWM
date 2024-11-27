@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common'; // Importa CommonModule
 import { RickAndMortyService } from './RickAndMorty/services/rickandmorty.service';
 import { Character } from './RickAndMorty/interfaces/character.interface';
+import { initFlowbite } from 'flowbite';
 
 @Component({
   selector: 'app-root',
@@ -24,6 +25,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchCharacters();
+    initFlowbite();
   }
 
   async fetchCharacters(): Promise<void> {
