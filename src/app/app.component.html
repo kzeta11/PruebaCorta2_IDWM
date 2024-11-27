@@ -1,0 +1,47 @@
+<div class="container mx-auto p-4">
+  <h1 class="text-3xl font-bold text-center mb-6">Rick and Morty Characters</h1>
+
+  <!-- Barra de búsqueda -->
+  <div class="mb-4">
+    <input
+      type="text"
+      [(ngModel)]="searchQuery"
+      (input)="onSearch()"
+      placeholder="Search characters..."
+      class="p-2 border rounded w-full"
+    />
+  </div>
+
+  <!-- Grilla de personajes -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+    <div
+      *ngFor="let character of characters"
+      class="p-4 border rounded shadow-lg bg-white"
+    >
+      <img [src]="character.image" [alt]="character.name" class="w-full h-48 object-cover rounded" />
+      <h2 class="text-xl font-bold mt-2">{{ character.name }}</h2>
+      <p>Status: {{ character.status }}</p>
+      <p>Species: {{ character.species }}</p>
+      <p>Location: {{ character.location.name }}</p>
+    </div>
+  </div>
+
+  <!-- Controles de paginación -->
+  <div class="flex justify-between items-center mt-4">
+    <button
+      (click)="previousPage()"
+      [disabled]="currentPage === 1"
+      class="px-4 py-2 bg-blue-500 text-white rounded disabled:opacity-50"
+    >
+      Previous
+    </button>
+    <span>Page {{ currentPage }} of {{ totalPages }}</span>
+    <button
+      (click)="nextPage()"
+      [disabled]="currentPage === totalPages"
+      class="px-4 py-2 bg-blue-500 text-white rounded disabled:opacity-50"
+    >
+      Next
+    </button>
+  </div>
+</div>
